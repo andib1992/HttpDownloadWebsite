@@ -29,19 +29,21 @@ public class DownloadHandler {
 	}
 
 	public void receiveResponse(HttpResponse response) {
-		File file = new File("downloadedWebsite.html");
+		String filename = "downloadedWebsite.html";
+		File file;
 
 		int n = 0;
-		while (file.exists()) {
-			System.out.println("override existing? (Y/N)");
+		do {
+			file = new File(filename);
+			System.out.println("override " + filename + "? (Y/N)");
 			String s = Main.scanner.next();
 			if (s.equalsIgnoreCase("n")) {
-				file = new File("downloadedWebsite(" + n++ + ").html");
+				filename = "downloadWebsite(" + n++ + ").html";
 			} else {
 				break;
 			}
 
-		}
+		} while (file.exists());
 		OutputStream output;
 		if (response != null) {
 			try {
@@ -49,7 +51,7 @@ public class DownloadHandler {
 				output = new FileOutputStream(file);
 				response.download(output);
 				response.disconnect();
-				System.out.println("Website saved in \"downloadedWebsite" + n + "\"");
+				System.out.println("Website saved in \"" + filename + "\"");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
