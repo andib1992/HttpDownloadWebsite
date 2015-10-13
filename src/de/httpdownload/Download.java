@@ -27,11 +27,11 @@ public class Download implements Runnable {
 
 		} catch (IOException e) {
 			System.err.println("oops");
-			
+
 		} finally {
 			DownloadHandler.getInstance().receiveResponse(this.response);
 		}
-		
+
 	}
 
 }

@@ -30,7 +30,7 @@ public class DownloadHandler {
 
 	public void receiveResponse(HttpResponse response) {
 		File file = new File("downloadedWebsite.html");
-		
+
 		int n = 0;
 		while (file.exists()) {
 			System.out.println("override existing? (Y/N)");
@@ -40,7 +40,7 @@ public class DownloadHandler {
 			} else {
 				break;
 			}
-			
+
 		}
 		OutputStream output;
 		if (response != null) {
@@ -49,17 +49,17 @@ public class DownloadHandler {
 				output = new FileOutputStream(file);
 				response.download(output);
 				response.disconnect();
-				System.out.println("");
+				System.out.println("Website saved in \"downloadedWebsite" + n + "\"");
 			} catch (IOException e) {
 				e.printStackTrace();
-			} 
+			}
 		} else {
 			System.out.println("no response received");
 		}
 	}
 
 	public void downloadWebsite(GenericUrl requestUrl) {
-		
+
 		try {
 			HttpRequest request = this.requestFactory
 					.buildGetRequest(requestUrl);
@@ -71,7 +71,7 @@ public class DownloadHandler {
 			System.err.println("Something went wrong");
 		}
 	}
-	
+
 	public Thread getCurrentDownloadThread() {
 		return this.currentThread;
 	}

@@ -15,7 +15,6 @@ public class Main {
 
 		Main.scanner = new Scanner(new InputStreamReader(System.in));
 
-		
 		System.out.println("enter URL:");
 
 		Boolean correct = false;
