@@ -28,7 +28,7 @@ public class DownloadHandler {
 
 	}
 
-	public void receiveResponse(HttpResponse response) {
+	public synchronized void receiveResponse(HttpResponse response) {
 		String filename = "downloadedWebsite.html";
 		File file;
 
